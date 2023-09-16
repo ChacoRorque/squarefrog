@@ -6,7 +6,6 @@ public struct Playlist: Codable {
     public var name: String = ""
     public var description: String = ""
     public var ispublic: Bool = false
-    public var user_id: Int = 1
- 
+    public var userId: Int = 1
 }
 

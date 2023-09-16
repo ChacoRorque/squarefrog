@@ -14,10 +14,12 @@ public class RequestResponse {
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        
+
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
         let (dataResponse, response) = try await session.upload(
             for: request,
-            from: try JSONEncoder().encode(encode)
+            from: try encoder.encode(encode)
         )
         
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
